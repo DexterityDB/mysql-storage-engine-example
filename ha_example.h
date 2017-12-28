@@ -93,7 +93,7 @@ public:
             an engine that can only handle statement-based logging. This is
             used in testing.
         */
-        return HA_FAST_KEY_READ | HA_BINLOG_STMT_CAPABLE | HA_HAS_RECORDS | HA_STATS_RECORDS_IS_EXACT; // SELECT COUNT(*) FROM table; optimization
+        return HA_FAST_KEY_READ | HA_BINLOG_STMT_CAPABLE;// | HA_HAS_RECORDS | HA_STATS_RECORDS_IS_EXACT; // SELECT COUNT(*) FROM table; optimization
     }
 
     /** @brief
