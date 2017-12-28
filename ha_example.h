@@ -36,8 +36,6 @@
 #include "handler.h"                     /* handler */
 #include "my_base.h"                     /* ha_rows */
 
-extern "C" uint32_t storage_engine_example(uint32_t);
-
 /** @brief
     Example_share is a class that will be shared among all open handlers.
     This example implements the minimum of what you will probably need.
