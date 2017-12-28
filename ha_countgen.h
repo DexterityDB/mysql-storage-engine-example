@@ -13,22 +13,22 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301  USA */
 
-/** @file ha_example.h
+/** @file ha_countgen.h
 
         @brief
-    The ha_example engine is a stubbed storage engine for example purposes only;
+    The ha_countgen engine is a stubbed storage engine for countgen purposes only;
     it does nothing at this point. Its purpose is to provide a source
     code illustration of how to begin writing new storage engines; see also
-    /storage/example/ha_example.cc.
+    /storage/countgen/ha_countgen.cc.
 
         @note
-    Please read ha_example.cc before reading this file.
-    Reminder: The example storage engine implements all methods that are *required*
+    Please read ha_countgen.cc before reading this file.
+    Reminder: The countgen storage engine implements all methods that are *required*
     to be implemented. For a full list of all methods that you can implement, see
     handler.h.
 
      @see
-    /sql/handler.h and /storage/example/ha_example.cc
+    /sql/handler.h and /storage/countgen/ha_countgen.cc
 */
 
 #include "my_global.h"                   /* ulonglong */
@@ -38,7 +38,7 @@
 
 /** @brief
     Example_share is a class that will be shared among all open handlers.
-    This example implements the minimum of what you will probably need.
+    This countgen implements the minimum of what you will probably need.
 */
 class Example_share : public Handler_share {
 public:
@@ -53,7 +53,7 @@ public:
 /** @brief
     Class definition for the storage engine
 */
-class ha_example: public handler
+class ha_countgen: public handler
 {
     THR_LOCK_DATA lock;      ///< MySQL lock
     Example_share *share;    ///< Shared lock info
@@ -61,15 +61,15 @@ class ha_example: public handler
     my_off_t scan_pos;
 
 public:
-    ha_example(handlerton *hton, TABLE_SHARE *table_arg);
-    ~ha_example()
+    ha_countgen(handlerton *hton, TABLE_SHARE *table_arg);
+    ~ha_countgen()
     {
     }
 
     /** @brief
         The name that will be used for display purposes.
      */
-    const char *table_type() const { return "EXAMPLE"; }
+    const char *table_type() const { return "COUNTGEN"; }
 
     /** @brief
         The name of the index type that will be used for display.
@@ -172,72 +172,72 @@ public:
     }
 
     /*
-        Everything below are methods that we implement in ha_example.cc.
+        Everything below are methods that we implement in ha_countgen.cc.
 
         Most of these methods are not obligatory, skip them and
         MySQL will treat them as not implemented
     */
     /** @brief
-        We implement this in ha_example.cc; it's a required method.
+        We implement this in ha_countgen.cc; it's a required method.
     */
     int open(const char *name, int mode, uint test_if_locked);    // required
 
     /** @brief
-        We implement this in ha_example.cc; it's a required method.
+        We implement this in ha_countgen.cc; it's a required method.
     */
     int close(void);                                              // required
 
     /** @brief
-        We implement this in ha_example.cc. It's not an obligatory method;
+        We implement this in ha_countgen.cc. It's not an obligatory method;
         skip it and and MySQL will treat it as not implemented.
     */
     int write_row(uchar *buf);
 
     /** @brief
-        We implement this in ha_example.cc. It's not an obligatory method;
+        We implement this in ha_countgen.cc. It's not an obligatory method;
         skip it and and MySQL will treat it as not implemented.
     */
     int update_row(const uchar *old_data, uchar *new_data);
 
     /** @brief
-        We implement this in ha_example.cc. It's not an obligatory method;
+        We implement this in ha_countgen.cc. It's not an obligatory method;
         skip it and and MySQL will treat it as not implemented.
     */
     int delete_row(const uchar *buf);
 
     /** @brief
-        We implement this in ha_example.cc. It's not an obligatory method;
+        We implement this in ha_countgen.cc. It's not an obligatory method;
         skip it and and MySQL will treat it as not implemented.
     */
     int index_read_map(uchar *buf, const uchar *key,
                                          key_part_map keypart_map, enum ha_rkey_function find_flag);
 
     /** @brief
-        We implement this in ha_example.cc. It's not an obligatory method;
+        We implement this in ha_countgen.cc. It's not an obligatory method;
         skip it and and MySQL will treat it as not implemented.
     */
     int index_read_last_map(uchar *buf, const uchar *key, key_part_map keypart_map);
 
     /** @brief
-        We implement this in ha_example.cc. It's not an obligatory method;
+        We implement this in ha_countgen.cc. It's not an obligatory method;
         skip it and and MySQL will treat it as not implemented.
     */
     int index_next(uchar *buf);
 
     /** @brief
-        We implement this in ha_example.cc. It's not an obligatory method;
+        We implement this in ha_countgen.cc. It's not an obligatory method;
         skip it and and MySQL will treat it as not implemented.
     */
     int index_prev(uchar *buf);
 
     /** @brief
-        We implement this in ha_example.cc. It's not an obligatory method;
+        We implement this in ha_countgen.cc. It's not an obligatory method;
         skip it and and MySQL will treat it as not implemented.
     */
     int index_first(uchar *buf);
 
     /** @brief
-        We implement this in ha_example.cc. It's not an obligatory method;
+        We implement this in ha_countgen.cc. It's not an obligatory method;
         skip it and and MySQL will treat it as not implemented.
     */
     int index_last(uchar *buf);
